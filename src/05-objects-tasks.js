@@ -20,8 +20,14 @@
  *    console.log(r.height);      // => 20
  *    console.log(r.getArea());   // => 200
  */
-function Rectangle(/* width, height */) {
-  throw new Error('Not implemented');
+function Rectangle(width, height) {
+  return {
+    width,
+    height,
+    getArea() {
+      return width * height;
+    },
+  };
 }
 
 
@@ -35,8 +41,8 @@ function Rectangle(/* width, height */) {
  *    [1,2,3]   =>  '[1,2,3]'
  *    { width: 10, height : 20 } => '{"height":10,"width":20}'
  */
-function getJSON(/* obj */) {
-  throw new Error('Not implemented');
+function getJSON(obj) {
+  return JSON.stringify(obj);
 }
 
 
@@ -51,8 +57,8 @@ function getJSON(/* obj */) {
  *    const r = fromJSON(Circle.prototype, '{"radius":10}');
  *
  */
-function fromJSON(/* proto, json */) {
-  throw new Error('Not implemented');
+function fromJSON(proto, json) {
+  return Object.assign(Object.create(proto), JSON.parse(json));
 }
 
 
@@ -111,32 +117,61 @@ function fromJSON(/* proto, json */) {
  */
 
 const cssSelectorBuilder = {
+  elementValue: '',
+  idValue: '',
+  classValue: '',
+  pseudoClassValue: '',
+  pseudoElementValue: '',
+  combineValue: '',
+
   element(/* value */) {
     throw new Error('Not implemented');
+    // this.elementValue += value;
+    // return this;
   },
 
   id(/* value */) {
     throw new Error('Not implemented');
+    // this.idValue += `#${value}`;
+    // return this;
   },
 
   class(/* value */) {
     throw new Error('Not implemented');
+    // this.classValue += `.${value}`;
+    // return this;
   },
 
   attr(/* value */) {
     throw new Error('Not implemented');
+    // this.classValue += `[${value}]`;
+    // return this;
   },
 
   pseudoClass(/* value */) {
     throw new Error('Not implemented');
+    // this.pseudoClassValue += `:${value}`;
+    // return this;
   },
 
   pseudoElement(/* value */) {
     throw new Error('Not implemented');
+    // this.pseudoElementValue += `::${value}`;
+    // return this;
   },
 
   combine(/* selector1, combinator, selector2 */) {
     throw new Error('Not implemented');
+    // this.combineValue += `${selector1.stringify()} ${combinator} ${selector2.stringify()}`;
+    // return this;
+  },
+
+  stringify() {
+    throw new Error('Not implemented');
+    // return this.elementValue + this.idValue
+    // + this.classValue
+    // + this.pseudoClassValue
+    // + this.pseudoElementValue;
   },
 };
 
